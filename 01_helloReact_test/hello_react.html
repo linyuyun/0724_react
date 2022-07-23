@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>hello_react</title>
+    <!-- 引入核心库 -->
+    <!--<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+    <!--  用于支撑react操作dom-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+    <!-- 引入babel 用于将jsx转化为js-->
+    <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+
+    <!--引入离线的js-->
+    <script type="text/javascript" src="../js/react.development.js" ></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        // 创建一个虚拟DOM
+        // jsx语法，js和html可以混合用
+        let VDOM = <h1>Hello,React</h1>
+        // 让react将虚拟的dom   VDOM转化为真实的dom 渲染到页面
+        // react 17的写法
+        // ReactDOM.render(VDOM,document.getElementById('test'));
+        // 下面是最新的react 18 的写法
+        ReactDOM.createRoot(document.getElementById('test')).render(VDOM);
+    </script>
+</body>
+</html>
