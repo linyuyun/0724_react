@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>hello_react_虚拟和真是dom的区别</title>
+    <!-- 引入核心库 -->
+    <!--<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+    <!--  用于支撑react操作dom-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+    <!-- 引入babel 用于将jsx转化为js-->
+    <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+
+    <!--引入离线的js-->
+    <script type="text/javascript" src="../js/react.development.js" ></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        // 创建一个虚拟DOM
+        // jsx语法，js和html可以混合用
+        let VDOM = (
+            <h1 id="h1Test">
+                <span>Hello,React,jsx创建虚拟dom</span>
+            </h1>
+        )
+
+        // 虚拟dom就是一个object 普通对象
+        console.log(typeof VDOM);
+        console.log(VDOM instanceof Object);
+        // 让react将虚拟的dom   VDOM转化为真实的dom 渲染到页面
+        // react 17的写法
+        // ReactDOM.render(VDOM,document.getElementById('test'));
+        // 下面是最新的react 18 的写法
+        ReactDOM.createRoot(document.getElementById('test')).render(VDOM);
+
+        // 真实dom
+        const TDOM = document.getElementById('test');
+        /*
+            对于jsx：
+                1.jsx的出现就是为了便于开发人员方便创建虚拟dom
+                2.jsx经过babel的编译，最终还是变成了js的语法
+                最终还是变成 ： React.createElement('h1',{id:'h1Test'},React.createElement('span',null,'Hello,React!!'));        
+        */
+
+        // 虚拟dom和真实dom
+        console.log('虚拟dom:',VDOM);
+        console.log('真实dom:',TDOM);
+        /*
+            真实dom 属性多 很重   虚拟的dom只有九个属性  相对来说很轻
+            因为虚拟dom是React在使用，无需使用真实dom那么多的属性
+            虚拟的dom最终还是要转为真实的dom渲染到页面
+        */
+        debugger;
+    </script>
+</body>
+</html>

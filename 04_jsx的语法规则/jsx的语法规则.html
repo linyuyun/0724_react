@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>hello_react_jsx</title>
+    <!-- 引入核心库 -->
+    <!--<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+    <!--  用于支撑react操作dom-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+    <!-- 引入babel 用于将jsx转化为js-->
+    <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+
+    <!--引入离线的js-->
+    <script type="text/javascript" src="../js/react.development.js" ></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <style>
+        .title{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+
+        const data = 'Hello,React,jsx语法规则!!';
+        const RED = 'red';
+        // 创建一个虚拟DOM
+        // jsx语法，js和html可以混合用
+        let VDOM = (
+            <div>
+                <h1 id="h1Test" className = 'title' style = {{color:RED,fontSize:'60px'}}>
+                    <span>{data}</span>
+                    </h1>
+                <h2>第二个根标签</h2>
+                <input type = 'text' />
+                <peiqi>佩奇标签，会展示，但是会有报错</peiqi>
+                {/*  注释的写法 */}
+                {/* <Peiqi>Peiqi组件，找不到直接报错，页面无法展示</Peiqi> */}
+            </div>           
+        )
+        // 让react将虚拟的dom   VDOM转化为真实的dom 渲染到页面
+        // react 17的写法
+        // ReactDOM.render(VDOM,document.getElementById('test'));
+        // 下面是最新的react 18 的写法
+        ReactDOM.createRoot(document.getElementById('test')).render(VDOM);
+
+        /*
+            jsx的语法规则:
+            1.创建虚拟DOM的时候，不要写引号，不管是单引号还是双引号，案例中用()括起来的
+            2.标签中要混入js的表达式，要使用{}，比如案例中的data
+            3.标签中的样式的类名要用className指定,在编译成真是的dom后，还是class
+            4.标签中的内联样式要用{{}}，style = {{color:RED,fontSize:'60px'}}
+                因为这个是个对象，因此属性名要用小驼峰命名不可以用_
+            5.只能有一个根标签，如果是多个要用<div>包起来
+            6.标签必须闭合  <input/>或者<input></input>
+            7.关于标签首字母大小写问题
+                a.如果首字母小写：
+                那么React就会去寻找与之同名的html标签，如果找见了，直接转化为html同名的元素
+                如果未找见，就会报错。这个标签不是浏览器识别的元素，或可以在React组件中定义
+                b.若首字母大写：那么React就会寻找和标签同名的组件
+                若找到：那么就是用组件
+                若未找到，就报错这个组件是不被定义的。
+        */
+
+        /*
+            对于jsx：
+                1.jsx的出现就是为了便于开发人员方便创建虚拟dom
+                2.jsx经过babel的编译，最终还是变成了js的语法
+                最终还是变成 ： React.createElement('h1',{id:'h1Test'},React.createElement('span',null,'Hello,React!!'));        
+        */
+    </script>
+</body>
+</html>
