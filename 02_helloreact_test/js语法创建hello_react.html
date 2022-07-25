@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>hello_react,js</title>
+    <!-- 引入核心库 -->
+    <!--<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
+    <!--  用于支撑react操作dom-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
+    <!-- 引入babel 用于将jsx转化为js-->
+    <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+
+    <!--引入离线的js-->
+    <script type="text/javascript" src="../js/react.development.js" ></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- <script type="text/javascript" src="../js/babel.min.js"></script> -->
+</head>
+<body>
+
+    <!-- 使用js语法创建虚拟dom -->
+    <div id="test"></div>
+    <script type="text/javascript">
+        // 这是创建真是dom li标签
+        // let VDOM = document.createElement('li');
+
+        // react创建虚拟dom
+        // 参数一  标签名  参数二 标签的属性键值对，参数三标签的内容
+        // let VDOM = React.createElement('h1',{id:'h1Test'},'Hello,React!!');
+
+        // 添加span标签
+        let VDOM = React.createElement('h1',{id:'h1Test'},React.createElement('span',null,'Hello,React!!'));
+        
+        // 渲染虚拟dom到页面
+        ReactDOM.createRoot(document.getElementById('test')).render(VDOM);
+
+    </script>
+</body>
+</html>
